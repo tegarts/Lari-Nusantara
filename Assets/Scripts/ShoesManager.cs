@@ -12,15 +12,17 @@ public class ShoesManager : MonoBehaviour, IDataPersistence
     public List<Button> buttons = new();
     public static int selectedShoes = 0;
     public int rekomendasi;
-    public GameObject panelRekomendasi;
-    public Animator panelRek;
-    public GameObject panelRekomendasi2;
-    public Animator panelRek2;
+    public int rekomendasiAHP;
+    public GameObject panelRekomendasiVIKOR;
+    public Animator panelRekVIKOR;
+    public GameObject panelRekomendasiAHP;
+    public Animator panelRekAHP;
     public List<GameObject> jempol = new();
 
     public void LoadData(GameData data)
     {
         rekomendasi = data.ranking;
+        rekomendasiAHP = data.rankingAHP;
     }
 
     public void SaveData(ref GameData data)
@@ -34,8 +36,8 @@ public class ShoesManager : MonoBehaviour, IDataPersistence
         {
             jempol[i].SetActive(false);
         }
-        panelRekomendasi.SetActive(false);
-        panelRekomendasi2.SetActive(false);
+        panelRekomendasiVIKOR.SetActive(false);
+        panelRekomendasiAHP.SetActive(false);
     }
 
     private void Update()
@@ -45,7 +47,7 @@ public class ShoesManager : MonoBehaviour, IDataPersistence
 
     public void TombolRekomendasi()
     {
-            panelRekomendasi2.SetActive(true);
+            panelRekomendasiVIKOR.SetActive(true);
             jempol[rekomendasi].SetActive(true);
             for (int i = 0; i < buttons.Count; i++)
             {
@@ -71,30 +73,39 @@ public class ShoesManager : MonoBehaviour, IDataPersistence
         // }
     }
 
-    public void TutupPanel()
+    public void TombolRekomendasiAHP()
     {
-        StartCoroutine(AnimTutupPanel());
+        panelRekomendasiAHP.SetActive(true);
+        jempol[rekomendasiAHP].SetActive(true);
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].interactable = true;
+        }
+        selectedShoes = rekomendasiAHP;
+        smr.material = shoes[rekomendasiAHP];
     }
 
-    public void TutupPanel2()
+    public void TutupPanelVIKOR()
     {
-        StartCoroutine(AnimTutupPanel2());
+        StartCoroutine(AnimTutupPanelVIKOR());
     }
-
-    IEnumerator AnimTutupPanel()
+    IEnumerator AnimTutupPanelVIKOR()
     {
-        panelRek.SetTrigger("close");
+        panelRekVIKOR.SetTrigger("close");
         yield return new WaitForSeconds(0.5f);
-        panelRekomendasi.SetActive(false);
+        panelRekomendasiVIKOR.SetActive(false);
     }
-
-    IEnumerator AnimTutupPanel2()
+    
+    public void TutupPanelAHP()
     {
-        panelRek2.SetTrigger("close");
-        yield return new WaitForSeconds(0.5f);
-        panelRekomendasi2.SetActive(false);
+        StartCoroutine(AnimTutupPanelAHP());
     }
-
+    IEnumerator AnimTutupPanelAHP()
+    {
+        panelRekAHP.SetTrigger("close");
+        yield return new WaitForSeconds(0.5f);
+        panelRekomendasiAHP.SetActive(false);
+    }
     public void Shoes1()
     {
         AudioManager.instance.PlaySFX("button");

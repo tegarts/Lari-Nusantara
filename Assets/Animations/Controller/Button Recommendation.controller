@@ -56,7 +56,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Button Setting
+  m_Name: Button Recommendation
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: close
@@ -64,7 +64,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -98,7 +98,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4a9732470afadfb4e8618a1001e5e17e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8b74a3c7af71f144d921bff4eb1283fe, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -125,7 +125,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2c694d1d12b5d6b4bb102a1efd0ebdd5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 51c35ff1b587f7141839435d1d4f96cc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

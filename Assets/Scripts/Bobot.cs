@@ -92,6 +92,27 @@ public class Bobot : MonoBehaviour, IDataPersistence
 
     public int rankSepatu;
 
+    [Header("AHP")]
+    public float[] hasilAHP1 = new float[8];
+    public float[] hasilAHP2 = new float[8];
+    public float[] hasilAHP3 = new float[8];
+    public float[] hasilAHP4 = new float[8];
+    public float[] hasilAHP5 = new float[8];
+    public float[] hasilAHP6 = new float[8];
+    public float[] hasilAHP7 = new float[8];
+    public float[] hasilAHP8 = new float[8];
+    public float[] hasilAHP9 = new float[8];
+    public float[] hasilAHP10 = new float[8];
+    public float[] hasilAHP11 = new float[8];
+    public float[] hasilAHP12 = new float[8];
+    public float[] hasilAHP13 = new float[8];
+    public float[] hasilAHP14 = new float[8];
+    public float[] hasilAHP15 = new float[8];
+    
+    public float[] ahp = new float[15];
+
+    public int[] rankingAHP = new int[15];
+    public int rankSepatuAHP;
     public void LoadData(GameData data)
     {
         rankSepatu = data.ranking;
@@ -347,7 +368,7 @@ public class Bobot : MonoBehaviour, IDataPersistence
 
             rankSepatu = ranking[0];
 
-
+            HitungAHP();
 
         }
     }
@@ -630,4 +651,65 @@ public class Bobot : MonoBehaviour, IDataPersistence
         HitungPerbandingan(_kecepatan, _jumlahBerpindah, listKecepatan, 6);
         HitungPerbandingan(_kecepatan, _kecepatan, listKecepatan, 7);
     }
+
+    #region AHP
+
+    private void HitungAHP()
+    {
+        float[] listBobot = new float[8];
+        listBobot[0] = bobotKoin;
+        listBobot[1] = bobotSkor;
+        listBobot[2] = bobotJarak;
+        listBobot[3] = bobotPowerup;
+        listBobot[4] = bobotLompat;
+        listBobot[5] = bobotSlide;
+        listBobot[6] = bobotBerpindah;
+        listBobot[7] = bobotKecepatan;
+
+        for(int i = 0; i < hasilAHP1.Length; i++)
+        {
+            hasilAHP1[i] = a1[i] * listBobot[i]; 
+            hasilAHP2[i] = a2[i] * listBobot[i];
+            hasilAHP3[i] = a3[i] * listBobot[i];
+            hasilAHP4[i] = a4[i] * listBobot[i];
+            hasilAHP5[i] = a5[i] * listBobot[i];
+            hasilAHP6[i] = a6[i] * listBobot[i];
+            hasilAHP7[i] = a7[i] * listBobot[i];
+            hasilAHP8[i] = a8[i] * listBobot[i];
+            hasilAHP9[i] = a9[i] * listBobot[i];
+            hasilAHP10[i] = a10[i] * listBobot[i];
+            hasilAHP11[i] = a11[i] * listBobot[i];
+            hasilAHP12[i] = a12[i] * listBobot[i];
+            hasilAHP13[i] = a13[i] * listBobot[i];
+            hasilAHP14[i] = a14[i] * listBobot[i];
+            hasilAHP15[i] = a15[i] * listBobot[i];
+        }
+
+        ahp[0] = hasilAHP1.Average();
+        ahp[1] = hasilAHP2.Average();
+        ahp[2] = hasilAHP3.Average();
+        ahp[3] = hasilAHP4.Average();
+        ahp[4] = hasilAHP5.Average();
+        ahp[5] = hasilAHP6.Average();
+        ahp[6] = hasilAHP7.Average();
+        ahp[7] = hasilAHP8.Average();
+        ahp[8] = hasilAHP9.Average();
+        ahp[9] = hasilAHP10.Average();
+        ahp[10] = hasilAHP11.Average();
+        ahp[11] = hasilAHP12.Average();
+        ahp[12] = hasilAHP13.Average();
+        ahp[13] = hasilAHP14.Average();
+        ahp[14] = hasilAHP15.Average();
+
+        for (int i = 0; i < ahp.Length; i++)
+            {
+                rankingAHP[i] = i;
+            }
+
+            System.Array.Sort(rankingAHP, (a, b) => ahp[b].CompareTo(ahp[a]));
+        
+            rankSepatuAHP = rankingAHP[0];
+    }
+
+    #endregion
 }

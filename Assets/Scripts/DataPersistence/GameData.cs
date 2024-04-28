@@ -9,6 +9,7 @@ public class GameData
     public float highScore;
     public float longestDistance;
     public int ranking;
+    public int rankingAHP;
     public bool isRetry;
     public float musicValue, sfxValue;
     public GameData()
@@ -17,6 +18,7 @@ public class GameData
         this.highScore = 0;
         this.longestDistance = 0;
         this.ranking = 0;
+        this.rankingAHP = 0;
 
         this.isRetry = false;
 

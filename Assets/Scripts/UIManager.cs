@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
     public GameObject backButton;
     public GameObject shoesStat;
     public GameObject recButton;
+    public GameObject recButton2;
     public GameObject shoesList;
     public GameObject mulaiButton;
 
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
     public Animator shoesStatAnim;
     public Animator shoesListAnim;
     public Animator recButtonAnim;
+    public Animator recButtonAnim2;
     public Animator mulaiButtonAnim;
     public Animator skorButtonAnim;
     public Animator skorPanelAnim;
@@ -51,9 +53,9 @@ public class UIManager : MonoBehaviour, IDataPersistence
     public TMP_Text _skor;
     public TMP_Text _kecepatan;
     public ShoesStat statChoose;
-    public GameObject buttonRekomendasi;
 
     public TMP_Text _sepatuRek;
+    public TMP_Text _sepatuRekAHP;
     public List<ShoesStat> _shoes = new();
 
     [Header("High Score")]
@@ -109,6 +111,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
         shoesStat.SetActive(false);
         shoesList.SetActive(false);
         recButton.SetActive(false);
+        recButton2.SetActive(false);
         mulaiButton.SetActive(false);
 
         isPlay = false;
@@ -189,6 +192,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
         _skor.text = "x " + statChoose.jSkor;
         _kecepatan.text = "x " + statChoose.jKecepatan;
         _sepatuRek.text = statChoose.shoesName;
+        _sepatuRekAHP.text = statChoose.shoesName;
     }
     public void StartGame()
     {
@@ -322,15 +326,18 @@ public class UIManager : MonoBehaviour, IDataPersistence
         shoesStat.SetActive(true);
         shoesList.SetActive(true);
         recButton.SetActive(true);
+        recButton2.SetActive(true);
         mulaiButton.SetActive(true);
 
         if(!DataPersistenceManager.instance.HasGameData())
         {
-            buttonRekomendasi.SetActive(false);
+            recButton.SetActive(false);
+            recButton2.SetActive(false);
         }
         else
         {
-            buttonRekomendasi.SetActive(true);
+            recButton.SetActive(true);
+            recButton2.SetActive(true);
         }
     }
 
@@ -340,12 +347,14 @@ public class UIManager : MonoBehaviour, IDataPersistence
         shoesStatAnim.SetTrigger("close");
         shoesListAnim.SetTrigger("close");
         recButtonAnim.SetTrigger("close");
+        recButtonAnim2.SetTrigger("close");
         mulaiButtonAnim.SetTrigger("close");
         yield return new WaitForSeconds(0.5f);
         backButton.SetActive(false);
         shoesStat.SetActive(false);
         shoesList.SetActive(false);
         recButton.SetActive(false);
+        recButton2.SetActive(false);
         mulaiButton.SetActive(false);
         yield return new WaitForSeconds(0.2f);
         logoImage.SetActive(true);
@@ -361,12 +370,14 @@ public class UIManager : MonoBehaviour, IDataPersistence
         shoesStatAnim.SetTrigger("close");
         shoesListAnim.SetTrigger("close");
         recButtonAnim.SetTrigger("close");
+        recButtonAnim2.SetTrigger("close");
         mulaiButtonAnim.SetTrigger("close");
         yield return new WaitForSeconds(0.5f);
         backButton.SetActive(false);
         shoesStat.SetActive(false);
         shoesList.SetActive(false);
         recButton.SetActive(false);
+        recButton2.SetActive(false);
         mulaiButton.SetActive(false);
         yield return new WaitForSeconds(0.1f);
         if (!DataPersistenceManager.instance.HasGameData())

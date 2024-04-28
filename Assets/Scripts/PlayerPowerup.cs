@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class PlayerPowerup : MonoBehaviour, IDataPersistence
 {
-    [SerializeField] private GameObject child;
+    [SerializeField] private GameObject childHijab;
+     [SerializeField] private GameObject childCloth;
+      [SerializeField] private GameObject childShoes;
 
     public Material silverMaterial;
+    public Material hijabMaterial;
+    public Material clothMaterial;
     public List<Material> shoes = new();
 
     public int jumlahPowerup;
@@ -63,16 +67,24 @@ public class PlayerPowerup : MonoBehaviour, IDataPersistence
     IEnumerator InvincibleStart()
     {
         PlayerController.isInvincible = true;
-        child.GetComponent<SkinnedMeshRenderer>().material = silverMaterial;
+        childHijab.GetComponent<SkinnedMeshRenderer>().material = silverMaterial;
+        childCloth.GetComponent<SkinnedMeshRenderer>().material = silverMaterial;
+        childShoes.GetComponent<SkinnedMeshRenderer>().material = silverMaterial;
         yield return new WaitForSeconds(8f + uiManager.statChoose.jPowerup);
         for (int i = 0; i < numberOfFlashes; i++)
         {
-            child.GetComponent<SkinnedMeshRenderer>().material = shoes[ShoesManager.selectedShoes];
+            childHijab.GetComponent<SkinnedMeshRenderer>().material = hijabMaterial;
+            childCloth.GetComponent<SkinnedMeshRenderer>().material = clothMaterial;
+            childShoes.GetComponent<SkinnedMeshRenderer>().material = shoes[ShoesManager.selectedShoes];
             yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
-            child.GetComponent<SkinnedMeshRenderer>().material = silverMaterial;
+            childHijab.GetComponent<SkinnedMeshRenderer>().material = silverMaterial;
+            childCloth.GetComponent<SkinnedMeshRenderer>().material = silverMaterial;
+            childShoes.GetComponent<SkinnedMeshRenderer>().material = silverMaterial;
             yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
         }
-        child.GetComponent<SkinnedMeshRenderer>().material = shoes[ShoesManager.selectedShoes];
+            childHijab.GetComponent<SkinnedMeshRenderer>().material = hijabMaterial;
+            childCloth.GetComponent<SkinnedMeshRenderer>().material = clothMaterial;
+            childShoes.GetComponent<SkinnedMeshRenderer>().material = shoes[ShoesManager.selectedShoes];
         PlayerController.isInvincible = false;
         
 
